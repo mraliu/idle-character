@@ -1,31 +1,16 @@
-# gap of 6px
-
-
 import pygame
+from Character import Character
 
 pygame.init()
 w, h = 800, 600
 screen = pygame.display.set_mode((w, h))
-pygame.display.set_caption("Simple Pygame Window")
-
-charx = 6  # gap between the side edge of the sprite to the first sprite x axis
-chary = 18 # gap between the top edge of the sprite to the first sprite y axis
-charw = 43 # the width of the sprite
-charh = 81 # the height of the sprite
-charscale = 3
-
-
-ryu_surf = pygame.image.load("ryu.gif") # Load the sprite sheet in
-ryu_surf.set_colorkey((112,136,136)) # Set the transparent colour of the sprite sheet
-
-ryu = [] # An array to store the cropped individuals sprites from the sprite sheet
-
-for i in range(4): # Loop to cycle through the first 4 sprites of the sprite sheet cropping and storing them into individual items in array
-    ryu.append(pygame.transform.scale(ryu_surf.subsurface((charx*(i+1)+(charw*i), chary, charw, charh)), (charw*charscale, charh*charscale))) # append the cropped sprite into array
+pygame.display.set_caption("Sprite")
 
 count = 0
 fps = 30
 clock = pygame.time.Clock() # Setup the clock to use fps 
+
+ryu = Character("ryu.gif", 6, 18, 43, 81, 2, 4, (112,136,136))
 
 running = True
 while running:
@@ -42,7 +27,7 @@ while running:
         else:
             count+=1 # Increase when not at the end of array
 
-    screen.blit(ryu[count], (w/2, h/2)) # Print out the sprite
+    screen.blit(ryu.sprite[count], (w/2, h/2)) # Print out the sprite
 
     
 
